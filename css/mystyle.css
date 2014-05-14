@@ -1,0 +1,380 @@
+* {
+
+	padding: 0;
+	margin: 0;
+
+}
+
+body {
+
+	padding: 0;
+	margin: 0;
+	background-color: #000000;
+	color: #FFFFFF;
+	font-family: "lucida sans unicode";
+	font-size: 13px;
+
+}
+
+#wrapper {
+	
+	position: relative;
+	width: 800px;	
+	margin-right: auto;
+	margin-left: auto;
+	border: 0px solid white;
+
+}
+
+#logo {
+
+	width: 750px;
+	height: 75px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 0px solid red;
+
+}
+
+#navbar {
+
+	width: 750px;
+	height: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 0px solid blue;
+
+}
+
+#topnav {
+
+	list-style-type: none;
+	border-top: 0.1em solid #696969;
+	border-bottom: 0.1em solid #696969;
+	margin-top: 6px;
+	
+}
+
+.top-nav {
+
+	display: inline;
+	margin-right: 0px;
+	padding: 0 10px;
+	border: 0px solid gold;
+	font-size: 15px;
+
+}
+
+.top-nav:hover {
+
+	background-color: #1C1C1C;
+
+}
+
+#contents {
+
+	width: 750px;
+	margin-right: auto;
+	margin-left: auto;
+	border: 0px solid gold;
+
+}
+
+#footer {
+
+	background-color: #1C1C1C;
+	position: absolute;
+	bottom: 0px;
+	width: 750px;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+a:link {
+
+	text-decoration: none;
+	color: #FFFFFF;
+
+}
+
+a:active {
+
+	text-decoration: none;
+	color: #FFFFFF;
+
+}
+
+a:visited {
+
+	text-decoration: none;
+	color: #FFFFFF;
+
+}
+
+a:hover {
+
+	text-decoration: none;
+	color: #FFFFFF;
+
+}
+
+h2 {
+
+	color: #527DFF;
+	font-size: 24px;
+
+}
+
+#index {
+
+	border: 0;
+	background-color: #141414;
+	width: 100%;
+
+}
+
+#index td {
+
+	padding-left: 5px;
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-right: 0;
+
+}
+
+#p_title {
+
+	font-size: 18px;
+	color: green;
+
+}
+
+#p_date {
+
+	color: gold;
+
+}
+
+.left {
+
+	width: 15%;
+	font-size: 14px;
+	color: #1ABAFF;
+
+}
+
+#title {
+
+	padding: 5px;
+	border: 0;
+	background-color: #141414;
+	color: #FFFFFF;
+	width: 370px;
+	font-family: "lucida sans unicode";
+
+}
+
+#content {
+
+	background-color: #141414; 
+	color: white; 
+	border: 0; 
+	padding-left: 5px; 
+	padding-top: 10px; 
+	padding-right: 10px; 
+	padding-bottom: 5px; 
+	overflow: auto;
+	width: 365px; 
+	height: 300px; 
+	font-family: "lucida sans unicode"; 
+	font-size: 14px;
+
+}
+
+#add_post td {
+
+	padding: 15px;
+
+}
+
+#submit { 
+
+	padding: 5px;
+	border: 0;
+	background-color: #141414;
+	color: #FFFFFF;
+
+}
+
+#submit:hover {
+
+	background-color: #5C5C5C;
+
+}
+
+#user {
+
+	padding: 5px;
+	border: 0;
+	background-color: #141414;
+	color: #FFFFFF;
+	width: 170px;
+	font-family: "lucida sans unicode";
+
+}
+
+#pass {
+
+	padding: 5px;
+	border: 0;
+	background-color: #141414;
+	color: #FFFFFF;
+	width: 170px;
+	font-family: "lucida sans unicode";
+
+}
+
+#log_in td {
+
+	padding: 15px;
+	
+}
+
+#login { 
+
+	padding: 5px;
+	border: 0;
+	background-color: #141414;
+	color: #FFFFFF;
+
+}
+
+#login:hover {
+
+	background-color: #5C5C5C;
+
+}
+
+#reg td {
+
+	padding: 15px;
+	
+}
+
+#username, #password, #password2, #fname, #lname, #email, #country {
+
+	padding: 5px;
+	border: 0;
+	background-color: #141414;
+	color: #FFFFFF;
+	width: 170px;
+	font-family: "lucida sans unicode";
+
+}
+
+#gender {
+
+	padding: 5px;
+	border: 0;
+	background-color: #141414;
+	color: #FFFFFF;
+	font-family: "lucida sans unicode";
+
+}
+
+#register { 
+
+	padding: 5px;
+	border: 0;
+	background-color: #141414;
+	color: #FFFFFF;
+
+}
+
+#register:hover {
+
+	background-color: #5C5C5C;
+
+}
+
+.le_ft {
+
+	font-size: 14px;
+	color: #1ABAFF;
+
+}
+
+#upload {
+
+	padding: 5px;
+	border: 0;
+	background-color: #141414;
+	color: #FFFFFF;
+	width: 370px;
+
+}
+
+#upload:hover { 
+
+	background-color: #5C5C5C;
+
+}
+
+#submit_pass { 
+
+	padding: 5px;
+	border: 0;
+	background-color: #141414;
+	color: #FFFFFF;
+
+}
+
+#submit_pass:hover { 
+
+	background-color: #5C5C5C;
+
+}
+
+#old_pass, #new_pass, #new_pass_2 {
+
+	padding: 5px;
+	border: 0;
+	background-color: #141414;
+	color: #FFFFFF;
+	width: 170px;
+	font-family: "lucida sans unicode";
+
+}
+
+#cg_pass td {
+
+	padding: 15px;
+	
+}
+
+/*:invalid {
+	
+	background-color: #ffdddd;
+	
+}
+
+:valid {
+	
+	background-color: #ddffdd;
+	
+}
+
+:required {
+	
+	border-color: #800000;
+	border-width: 3px;
+	
+}*/
+
+.error {
+	
+	color: #0F0;
+	list-style-type: none;
+	
+}
