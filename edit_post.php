@@ -2,14 +2,22 @@
 
 include_once('resources/init.php');
 
+session_start();
+
+if(!isset($_SESSION['username'])){
+
+	header('Location: index.php');
+
+}
+
 $post = get_posts($_GET['id']);
 
-if(isset ($_POST['title'], $_POST['contents']) ){
+if(isset ($_POST['title'], $_POST['content'])){
 	
 	$errors = array();
 	
 	$title = trim($_POST['title']);
-	$contents = trim($_POST['contents']);
+	$contents = trim($_POST['content']);
 	
 	if ( empty($title) ){
 		$errors[] = 'You need to supply a title.';
@@ -20,53 +28,52 @@ if(isset ($_POST['title'], $_POST['contents']) ){
 		$errors[] = 'You need to supply the contents';
 	}
 	
+	if($_FILES['upload']['name'] != ''){
+	$file_type	=	$_FILES['upload']['type']; //returns the mime type
+	$allowed	=	array("image/jpeg", "image/gif", "image/png", "application/pdf");
+		if(!in_array($file_type, $allowed)){
+			$errors[] = "Only jpg, gif, png and pdf files are allowed";
+		}
+	}	
+	
 	if( empty($errors) ){
-		edit_post($_GET['id'], $title, $contents);
-		
-		header("Location: index.php?id={$post[0]['id']}");
-		die();
+	edit_post($_GET['id'], $title, $contents);
+	$file = add_attachment();
+	header("Location: user.php?id={$post[0]['id']}");
+	die();
 	}
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<style>
-
-body { background-color: #000000; color: #ffffff; font-family: "lucida sans unicode"; font-size: 14px }
-
-div#p_post { border: 0px solid gold; padding: 10px }
-
-a:link { color: green; text-decoration: none }
-a:active { color: red; text-decoration: none }
-a:visited { color: green; text-decoration: none }
-a:hover { color: orange; text-decoration: none }
-
-span#p_date { color: orange; font-weight: bold }
-
-input { background-color: #1E1E1E; color: white; border: 0; padding: 5px; }
-textarea { background-color: #1E1E1E; color: white; border: 0; padding-left: 5px; padding-top: 10px; padding-right: 10px; padding-bottom: 5px; overflow: auto; }
-#submit:hover { background-color: #5C5C5C; color: orange }
-
-ul#topnav { list-style-type: none; }
-li.top-nav { display: inline; margin-right: 20px; }
-
-#title { width: 370px; font-family: "lucida sans unicode" }
-#contents { width: 365px; height: 300px; font-family: "lucida sans unicode" }
-#submit { padding: 2px }
-
-</style>
 <title><?php echo $post[0]['title']; ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" href="css/mystyle.css" media="screen" type="text/css" />
 </head>
 <body>
-<ul id="topnav">
-	<li class="top-nav"><a href="index.php">Home</a></li>
-</ul>
-<h1>Edit This post</h1>
+<div id="wrapper">
 
+<div id="logo">
+<a href="#"><img src="images/logo.png" border="0" /></a>
+</div>
+
+<div id="navbar">
+<ul id="topnav">
+	<a href="index.php"><li class="top-nav">HOME</li></a>
+	<a href="add_post.php"><li class="top-nav">ADD POST</li></a>
+	<a href="login.php"><li class="top-nav">LOGIN</li></a>
+	<a href="register.php"><li class="top-nav">REGISTER</li></a>
+</ul>
+</div>
+
+<div id="contents">
+<h2><?php echo $post[0]['title']; ?></h2>
+<form method="post" action="" enctype="multipart/form-data">
+<table id="add_post">
+<tr>
+<td colspan="2">
 <?php
 
 if(isset($errors) && !empty($errors)){
@@ -74,21 +81,27 @@ if(isset($errors) && !empty($errors)){
 }
 
 ?>
-<form method="post" action="">
-<table border="0" cellspacing="5" cellpadding="5">
-<tr>
-<td><label for="title">Title<font color="red">*</font>: </label></td>
-<td><input type="text" name="title" id="title" autocomplete="off" value="<?php echo $post[0]['title']; ?>" /></td>
+</td>
 </tr>
 <tr>
-<td><label for="contents">Contents<font color="red">*</font>: </label></td>
-<td><textarea name="contents" id="contents"><?php echo $post[0]['contents']; ?></textarea></td>
+<td class="le_ft" align="right"><label for="title">TITLE<font color="red">*</font> </label></td>
+<td><input type="text" name="title" id="title" autocomplete="off" value="<?php echo $post[0]['title']; ?>" required /></td>
 </tr>
 <tr>
-<td colspan="2"><input type="submit" id="submit" value="Add Post" name="submit" /></td>
+<td class="le_ft" align="right"><label for="content">CONTENTS<font color="red">*</font> </label></td>
+<td><textarea name="content" id="content" required><?php echo $post[0]['contents']; ?></textarea></td>
+</tr>
+<tr>
+<td class="le_ft" align="right">ATTACHMENTS</td>
+<td><input type="file" name="upload" size="30" id="upload" /></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><input type="submit" id="submit" value="UPDATE POST" name="submit" /></td>
 </tr>
 </table>
 </form>
+</div>
 
+</div>
 </body>
 </html>
