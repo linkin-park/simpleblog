@@ -1,62 +1,66 @@
-<?php
+<?php 
+
+session_start();
 
 include_once('resources/init.php');
+
+if(isset($_SESSION['username'])){
+
+	header('Location: user.php');
+
+}
 
 $posts = ( isset ($_GET['id']) ) ? get_posts($_GET['id']) : get_posts();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>tlotr's Simple Blog</title>
-<style>
-
-body { background-color: #000000; color: #ffffff; font-family: "lucida sans unicode"; font-size: 14px }
-
-div#p_post { border: 0px solid gold; padding: 10px }
-
-a:link { color: green; text-decoration: none }
-a:active { color: red; text-decoration: none }
-a:visited { color: green; text-decoration: none }
-a:hover { color: orange; text-decoration: none }
-
-span#p_date { color: orange; font-weight: bold }
-
-ul { list-style-type: none; }
-li { display: inline; margin-right: 20px; }
-
-</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" href="css/mystyle.css" media="screen" type="text/css" />
 </head>
 <body>
-<ul>
-	<li><a href="index.php">Home</a></li>
-	<li><a href="add_post.php">Add Post</a></li>
-</ul>
-<h1>tlotr's Simple Blog</h1>
-<hr>
-<br />
-<h2>Posts</h2>
+<div id="wrapper">
 
-<?php foreach ($posts as $post){ ?>
-
-<div id="p_post">
-
-<h2><a href="index.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></h2>
-
-<p>Posted on <span id="p_date"><?php echo date('D d-M-Y h:i:s A', strtotime($post['posted_date'])); ?></span></p>
-
-<div><?php echo nl2br($post['contents']); ?></div>
-<p> </p>
-<menu>
-<ul>	
-<li><a href="delete_post.php?id=<?php echo $post['id']; ?>">Delete the post</a></li>
-<li><a href="edit_post.php?id=<?php echo $post['id']; ?>">Edit This Post</a></li>
-</ul>
-</menu>
+<div id="logo">
+<a href="index.php"><img src="images/logo.png" border="0" /></a>
 </div>
-<br /><br />
+
+<div id="navbar">
+<ul id="topnav">
+	<a href="index.php"><li class="top-nav">HOME</li></a>
+	<a href="add_post.php"><li class="top-nav">ADD POST</li></a>
+	<a href="login.php"><li class="top-nav">LOGIN</li></a>
+	<a href="register.php"><li class="top-nav">REGISTER</li></a>
+</ul>
+</div>
+
+<div id="contents">
+<h2>POSTS</h2>
+<?php foreach ($posts as $post){ ?>
+<table id="index">
+<tr>
+<td class="left">TITLE</td>
+<td><a href="index.php?id=<?php echo $post['id']; ?>"><?php echo "<span id=\"p_title\">" .$post['title']. "</span>"; ?></a></td>
+<tr>
+<tr>
+<td class="left">POSTED ON</td>
+<td><span id="p_date"><?php echo date('D d-M-Y h:i:s A', strtotime($post['posted_date'])); ?></span></td>
+</tr>
+<tr>
+<td class="left">CONTENTS</td>
+<td><?php echo nl2br($post['contents']); ?></td>
+</tr>
+<tr>
+<td class="left">ATTACHMENTS</td>
+<td><?php if($post['names'] != 'null'): ?> <span class="attach"><a href="upload/<?=$post['names'];?>" target="blank"><?=$post['names'];?></a></span> <?php endif; ?> </td>
+</tr>
+</table>
+<br />
 <?php } ?>
+</div>
+
+</div>
 </body>
 </html>
