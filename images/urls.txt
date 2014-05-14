@@ -1,0 +1,7 @@
+These are the urls for the images
+
+logo: http://i.imgur.com/TKcbOT1.png                // This is my logo, however you can use your own logo.
+
+edit: http://i.imgur.com/DdISrtO.png
+
+delete: http://i.imgur.com/thOK4tR.png
