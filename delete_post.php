@@ -2,14 +2,22 @@
 
 include_once('resources/init.php');
 
-if ( ! isset($_GET['id'])){
+session_start();
+
+if(!isset($_SESSION['username'])){
+
 	header('Location: index.php');
+
+}
+
+if ( ! isset($_GET['id'])){
+	header('Location: user.php');
 	die();
 }
 
 delete('posts', $_GET['id']);
 
-header('Location: index.php');
+header('Location: user.php');
 die();
 
 ?>
