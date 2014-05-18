@@ -31,9 +31,10 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `title` varchar(255) NOT NULL,
   `contents` text NOT NULL,
   `posted_date` datetime DEFAULT '0000-00-00 00:00:00',
-  `names` varchar(255) NOT NULL,
-  `username` varchar(25) NOT NULL,
-  PRIMARY KEY (`id`)
+  `filename` varchar(255) NOT NULL,
+  `posterid` int NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `poster_invalid` FOREIGN KEY (`posterid`) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
